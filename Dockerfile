@@ -54,6 +54,13 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# 🔧 Upgrade lcov (Ubuntu provides 1.14, we need >=1.15 for --ignore-errors)
+RUN apt-get update && apt-get install -y git perl \
+    && git clone https://github.com/linux-test-project/lcov.git /tmp/lcov \
+    && cd /tmp/lcov \
+    && make install \
+    && rm -rf /tmp/lcov
+
 # Build and install GTest using CMake
 RUN cd /usr/src/googletest \
     && mkdir build && cd build \
