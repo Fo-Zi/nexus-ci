@@ -55,7 +55,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # 🔧 Upgrade lcov (Ubuntu provides 1.14, we need >=1.15 for --ignore-errors)
-RUN apt-get update && apt-get install -y git perl \
+RUN apt-get update && apt-get install -y git perl libcapture-tiny-perl \
     && git clone https://github.com/linux-test-project/lcov.git /tmp/lcov \
     && cd /tmp/lcov \
     && make install \
